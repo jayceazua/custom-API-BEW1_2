@@ -1,7 +1,7 @@
 # Custom API Project
 
 ## Puppy Love API
-<img src="https://github.com/jayceazua/custom-API-BEW1_2/blob/master/puppy_love.png">
+<img src="https://github.com/jayceazua/custom-API-BEW1_2/blob/master/puppy_love.jpg">
 
 ### Description
 This API allows authenticated users to post their dog's online for other users to search for that specific dog breed.
