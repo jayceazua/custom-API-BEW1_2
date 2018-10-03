@@ -24,7 +24,7 @@ router.get('/:id/edit', (req, res) => {
 });
 // UPDATE
 router.put('/:id', (req, res) => {
-    
+
 });
 // DELETE
 router.delete('/:id', (req, res) => {

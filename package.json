@@ -4,8 +4,8 @@
   "description": "## Puppy Love API <img src=\"https://github.com/jayceazua/custom-API-BEW1_2/blob/master/puppy_love.jpg\">",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+     "test": "mocha || true"
+   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jayceazua/custom-API-BEW1_2.git"
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/jayceazua/custom-API-BEW1_2#readme",
   "devDependencies": {
     "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "mocha": "^5.2.0"
   },
   "dependencies": {

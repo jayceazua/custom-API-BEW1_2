@@ -2,18 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const PuppySchema = new Schema({
-    name: {
-        type: String
-    },
-    gender: {
-        type: String
-    },
-    breed: {
-        type: String
-    },
-    age: {
-        type: Number
-    }
+    name: { type: String },
+    gender: { type: String },
+    breed: { type: String },
+    age: { type: Number }
 });
 
 
