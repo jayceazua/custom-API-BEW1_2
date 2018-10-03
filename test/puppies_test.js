@@ -21,7 +21,7 @@ describe('Puppies', () => {
         .exec((err, puppies) => {
             puppies.remove()
         })
-    });
+    }); // ... end ...
 
     // TEST INDEX
     it('Should index ALL puppies on / GET', (done) => {
@@ -39,7 +39,7 @@ describe('Puppies', () => {
         .catch((err) => {
             return done(err)
         });
-    });
+    }); // ... end ...
 
     // TEST CREATE
     it('Should add NEW puppy into database', (done) => {
@@ -48,12 +48,13 @@ describe('Puppies', () => {
         .send(samplePuppy)
         .then((res) => {
             res.status.should.be.equal(200);
+            res.should.be.json
              return done();
         })
         .catch((err) => {
             return done(err)
         });
-    });
+    }); // ... end ...
 
     // TEST READ
     it('Should show a SINGLE puppy on /puppies/:id GET', (done) => {
@@ -64,6 +65,7 @@ describe('Puppies', () => {
             .get(`/puppies/${data._id}`)
             .then((res) => {
                 res.status.should.be.equal(200);
+                res.should.be.json
                 return done()
             })
             .catch((err) => {
@@ -73,7 +75,7 @@ describe('Puppies', () => {
         .catch((err) => {
             return done(err)
         });
-    });
+    }); // ... end ...
 
     // TEST UPDATE
     it('Should update a SINGLE puppy on /puppies/:id PUT', (done) => {
@@ -83,15 +85,16 @@ describe('Puppies', () => {
             .put(`/puppies/${data._id}?_method=PUT`)
             .send({'name': 'Thor', 'breed': 'Pug', 'gender': 'male', 'age': 2})
             .then((res) => {
+                // does it really update?
                 res.status.should.be.equal(200);
-                // res.should.be.json
+
                 return done();
             })
             .catch((err) => {
                 return done(err)
             });
         });
-    });
+    }); // ... end ...
 
     // TEST DELETE
     it('Should delete a SINGLE puppy on /puppies/:id DELETE', (done) => {
@@ -107,6 +110,6 @@ describe('Puppies', () => {
                 return done(err)
             });
         });
-    }); // end of the DELETE
+    }); // ... end ...
 
 });

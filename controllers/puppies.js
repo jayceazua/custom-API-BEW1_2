@@ -51,16 +51,6 @@ router.put('/:id', (req, res) => {
         console.log(err.message);
     })
 
-    // Puppy.findByIdAndUpdate(req.params.id, {
-    //     ...req.body
-    // })
-    // .exec()
-    // .then((puppy) => {
-    //     res.json({puppy})
-    // })
-    // .catch((err) => {
-    //     throw err.message
-    // })
 });
 
 // DELETE
