@@ -4,8 +4,8 @@
   "description": "## Puppy Love API <img src=\"https://github.com/jayceazua/custom-API-BEW1_2/blob/master/puppy_love.jpg\">",
   "main": "server.js",
   "scripts": {
-     "test": "mocha || true"
-   },
+    "test": "mocha || true"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jayceazua/custom-API-BEW1_2.git"
@@ -23,8 +23,10 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "method-override": "^3.0.0",
     "mongoose": "^5.3.1"
   }
 }

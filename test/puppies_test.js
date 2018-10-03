@@ -1,5 +1,6 @@
 const chai = require('chai');
 const should = chai.should();
+const app = require('../server.js')
 const Puppy = require('../models/puppy');
 chai.use(require('chai-http'));
 
@@ -18,7 +19,6 @@ describe('Puppies', () => {
     after(() => {
         Puppy.deleteMany({ name: 'Lila' })
         .exec((err, puppies) => {
-            console.log(puppies)
             puppies.remove()
         })
     });
@@ -26,26 +26,32 @@ describe('Puppies', () => {
     // TEST INDEX
     it('Should index ALL puppies on / GET', (done) => {
         // use chai-http to make a request to your server
-        chai.request('localhost:3000')
+        chai.request(app)
         // send a GET request to root route
         .get('/')
         // wait for response
-        .end((err, res) => {
+        .then((res) => {
             // check that the response status is = 200 (success)
-            res.should.have.status(200);
+            res.status.should.be.equal(200);
             // end this test and move onto the next.
-            done();
+            return done();
+        })
+        .catch((err) => {
+            return done(err)
         });
     });
 
     // TEST CREATE
     it('Should add NEW puppy into database', (done) => {
-        chai.request('localhost:3000')
-        .post('/reviews')
+        chai.request(app)
+        .post('/puppies')
         .send(samplePuppy)
-        .end((err, res) => {
-             res.should.have.status(200);
-             done();
+        .then((res) => {
+            res.status.should.be.equal(200);
+             return done();
+        })
+        .catch((err) => {
+            return done(err)
         });
     });
 
@@ -53,13 +59,19 @@ describe('Puppies', () => {
     it('Should show a SINGLE puppy on /puppies/:id GET', (done) => {
         // make a sample puppy into the schema
         let puppy = new Puppy(samplePuppy);
-        puppy.save((err, data) => {
-            chai.request('localhost:3000')
+        puppy.save().then((data) => {
+            chai.request(app)
             .get(`/puppies/${data._id}`)
-            .end((err, res) => {
-                res.should.have.status(200);
-                done();
-            });
+            .then((res) => {
+                res.status.should.be.equal(200);
+                return done()
+            })
+            .catch((err) => {
+                throw err
+            })
+        })
+        .catch((err) => {
+            return done(err)
         });
     });
 
@@ -67,13 +79,16 @@ describe('Puppies', () => {
     it('Should update a SINGLE puppy on /puppies/:id PUT', (done) => {
         let puppy = new Puppy(samplePuppy);
         puppy.save((err, data)  => {
-            chai.request('localhost:3000')
+            chai.request(app)
             .put(`/puppies/${data._id}?_method=PUT`)
-            .send({'name': 'Updating the title'})
-            .end((err, res) => {
-                res.should.have.status(200);
+            .send({'name': 'Thor', 'breed': 'Pug', 'gender': 'male', 'age': 2})
+            .then((res) => {
+                res.status.should.be.equal(200);
                 // res.should.be.json
-                done();
+                return done();
+            })
+            .catch((err) => {
+                return done(err)
             });
         });
     });
@@ -82,13 +97,16 @@ describe('Puppies', () => {
     it('Should delete a SINGLE puppy on /puppies/:id DELETE', (done) => {
         let puppy = new Puppy(samplePuppy);
         puppy.save((err, data) => {
-            chai.request('localhost:3000')
+            chai.request(app)
             .delete(`/puppies/${data.id}?_method=DELETE`)
-            .end((err, res) => {
-                res.should.have.status(200);
-                done()
+            .then((res) => {
+                res.status.should.be.equal(200);
+                return done()
+            })
+            .catch((err) => {
+                return done(err)
             });
         });
-    });
+    }); // end of the DELETE
 
 });
