@@ -13,7 +13,7 @@ const samplePuppy = {
 }
 
 
-// tell mocha you want to test Puppies 
+// tell mocha you want to test Puppies
 describe('Puppies', () => {
     // dump the inputs after each test
     after(() => {
@@ -80,12 +80,14 @@ describe('Puppies', () => {
     // TEST UPDATE
     it('Should update a SINGLE puppy on /puppies/:id PUT', (done) => {
         let puppy = new Puppy(samplePuppy);
+        let updatedPuppy = {name: 'Thor', breed: 'Pug', gender: 'male', age: 2}
         puppy.save((err, data)  => {
             chai.request(app)
             .put(`/puppies/${data._id}?_method=PUT`)
-            .send({'name': 'Thor', 'breed': 'Pug', 'gender': 'male', 'age': 2})
+            .send(updatedPuppy)
             .then((res) => {
                 // does it really update?
+                console.log(res.body)
                 res.status.should.be.equal(200);
 
                 return done();
