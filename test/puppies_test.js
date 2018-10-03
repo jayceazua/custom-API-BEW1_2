@@ -13,7 +13,7 @@ const samplePuppy = {
 }
 
 
-// tell mocha you want to test Puppies (this string is taco)
+// tell mocha you want to test Puppies 
 describe('Puppies', () => {
     // dump the inputs after each test
     after(() => {
