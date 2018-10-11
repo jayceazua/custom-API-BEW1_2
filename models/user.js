@@ -7,6 +7,8 @@ const UserSchema = new Schema({
     updatedAt: {type: Date},
     password: {type: String, select: false, maxLength: 20},
     username: {type: String, required: true, maxLength: 16},
+    admin: { type: Boolean, default: false },
+    banned: { type: Boolean, default: false },
     comments: [{type: Schema.Types.ObjectId, ref: 'Comment', required: true}],
 });
 

@@ -9,6 +9,11 @@ let recaptcha = new Recaptcha('6LciD0EUAAAAAMSM4b2xRawGOzSD0ke7mlaY-ZpQ', '6LciD
 
 module.exports = (app) => {
 
+  app.get('/current_user', (req, res) => {
+      res.send(req.user);
+  })
+
+
     // SIGN UP POST
     app.post('/sign-up/', async (req, res) => {
         // Create User and JWT
